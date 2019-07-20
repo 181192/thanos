@@ -431,7 +431,7 @@ func hardlinkBlock(src, dst string) error {
 	files = append(files, block.MetaFilename, block.IndexFilename)
 
 	for _, fn := range files {
-		if err := os.Link(filepath.Join(src, fn), filepath.Join(dst, fn)); err != nil {
+		if err := os.Symlink(filepath.Join(src, fn), filepath.Join(dst, fn)); err != nil {
 			return errors.Wrapf(err, "hard link file %s", fn)
 		}
 	}
